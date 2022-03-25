@@ -4,25 +4,21 @@
     "author": "綿風コウラン",
     "version": "1.0",
     "description": "いいね順に集めたかったので",
-    "permissions": [
-        "tabs",
-        "background",
-        "http://*/*",
-        "https://*/*"
-    ],
+    "permissions": ["tabs", "background", "activeTab"],
     "background": {
-        "scripts": ["background.js"]
+        "service_worker": "background.js"
     },
-    "browser_action": {
-    },
+    "action": {},
     "content_scripts": [
-    {
-        "matches": [ "https://twitter.com/*" ],
-        "js": [
-            "script.js"
-        ]
-    }],
+        {
+            "matches": ["https://twitter.com/*"],
+            "js": ["script.js"]
+        }
+    ],
     "web_accessible_resources": [
-        "tweet_data_script.js"
+        {
+            "resources": ["tweet_data_script.js"],
+            "matches": ["<all_urls>"]
+        }
     ]
 }

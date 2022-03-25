@@ -134,6 +134,8 @@ async function tweet_data_load_json() {
             });
         });
         document.head.appendChild(f);
+        // Chormeの仕様変更により、ここでファイルが開けない状態になりました
+        // さほど使ってないのでそのまま廃止方向で検討します
         f.click();
         document.body.onfocus = () => {
             setTimeout(() => {

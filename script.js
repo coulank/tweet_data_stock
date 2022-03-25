@@ -1,7 +1,9 @@
-chrome.extension.onMessage.addListener(function(request, sender, sendResponse) {
-    if (request == "Action") {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+    if (message == "Action") {
         main();
     }
+    sendResponse();
+    return;
 });
 function main(){
     insert_link_element('script', 'tweet_data_script.js');
@@ -13,13 +15,13 @@ function insert_link_element(tag, insert_path, id = ''){
     var url, elt = null;
     switch (tag.toLowerCase()){
         case 'css':
-            url=chrome.extension.getURL(insert_path);
+            url=chrome.runtime.getURL(insert_path);
             elt = document.createElement('link');
             elt.href=url;
             elt.rel = 'stylesheet';
         break;
         case 'script':
-            url=chrome.extension.getURL(insert_path);
+            url=chrome.runtime.getURL(insert_path);
             elt = document.createElement('script');
             elt.src = url;
             elt.type = 'text/javascript';
